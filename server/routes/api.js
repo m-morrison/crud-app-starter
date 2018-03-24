@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 router.get('/todos', (req, res) => {
     // Get todos from the mock api
     // This should ideally be replaced with a service that connects to MongoDB
-    axios.get(`${API}/todos`)
+    axios.get(`https://jsonplaceholder.typicode.com/todos`)
         .then(todos => {
             res.status(200).send(todos.data);
         })
