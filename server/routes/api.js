@@ -24,6 +24,7 @@ router.get('/todos', (req, res) => {
         })
 });
 
+//get by id
 router.get('/todos/:id', (req, res) => {
     axios.get('https://jsonplaceholder.typicode.com/todos/' + req.params.id)
     .then(todo => {
@@ -32,5 +33,22 @@ router.get('/todos/:id', (req, res) => {
     .catch(error => {
         res.status(500).send(error);
     })
+});
+
+
+//save todo
+router.post('/', (req, res) => {
+    axios.post('https://jsonplaceholder.typicode.com/todos', req.body)
+    .then(response => response.json())
+    .catch(error => {
+        res.status(500).send(error);
+    })
 })
+
+//update todo
+router.put('/')
+
+
+
+
 module.exports = router;
