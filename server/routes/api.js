@@ -11,13 +11,13 @@ router.get('/', (req, res) => {
     res.send('congrats, your api works');
 });
 
-// Get all todos
-router.get('/todos', (req, res) => {
+// Get all posts
+router.get('/posts', (req, res) => {
     // Get todos from the mock api
     // This should ideally be replaced with a service that connects to MongoDB
-    axios.get(`https://jsonplaceholder.typicode.com/todos`)
-        .then(todos => {
-            res.status(200).send(todos.data);
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
+        .then(posts => {
+            res.status(200).send(posts.data);
         })
         .catch(error => {
             res.status(500).send(error)
@@ -25,10 +25,10 @@ router.get('/todos', (req, res) => {
 });
 
 //get by id
-router.get('/todos/:id', (req, res) => {
-    axios.get('https://jsonplaceholder.typicode.com/todos/' + req.params.id)
-    .then(todo => {
-        res.status(200).send(todo.data);
+router.get('/posts/:id', (req, res) => {
+    axios.get('https://jsonplaceholder.typicode.com/posts/' + req.params.id)
+        .then(posts => {
+            res.status(200).send(posts.data);
     })
     .catch(error => {
         res.status(500).send(error);
@@ -36,17 +36,15 @@ router.get('/todos/:id', (req, res) => {
 });
 
 
-//save todo
+//save posts
 router.post('/', (req, res) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos', req.body)
+    axios.post('https://jsonplaceholder.typicode.com/posts', req.body)
     .then(response => response.json())
     .catch(error => {
         res.status(500).send(error);
     })
 })
 
-//update todo
-router.put('/')
 
 
 
