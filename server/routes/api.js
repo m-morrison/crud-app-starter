@@ -1,52 +1,47 @@
 const express = require('express');
 const router = express.Router();
 
-//axios for making http request
-const axios = require('axios');
-//not using a real database
-const API = 'https://jsonplaceholder.typicode.com';
+const inMemoryBookDB = [
+    { id: 1, title: "Gates of Fire", author: "Steven Pressfield", publisher: "Bantam", published_year: "2005"  },
+    { id: 2, title: "12 rules for life", author: "Jordan Peterson", publisher: "Random House", published_year: "2012" }
+]
 
-// GET API listing
 router.get('/', (req, res) => {
     res.send('congrats, your api works');
 });
 
-// Get all posts
-router.get('/posts', (req, res) => {
-    // Get todos from the mock api
-    // This should ideally be replaced with a service that connects to MongoDB
-    axios.get(`https://jsonplaceholder.typicode.com/posts`)
-        .then(posts => {
-            res.status(200).send(posts.data);
-        })
-        .catch(error => {
-            res.status(500).send(error)
-        })
+router.get('/books', (req, res) => {
+    res.status(200)
+    .json(inMemoryBookDB);
 });
 
-//get by id
-router.get('/posts/:id', (req, res) => {
-    axios.get('https://jsonplaceholder.typicode.com/posts/' + req.params.id)
-        .then(posts => {
-            res.status(200).send(posts.data);
-    })
-    .catch(error => {
-        res.status(500).send(error);
-    })
+router.get('/books/:id', (req, res) => {
+    const id = req.params.id;
+
+    const bookItem = inMemoryBookDB.filter((book) => book.id = id)[id-1];
+
+    if (!bookItem) {
+        res.sendStatus(400);
+    }
+    else {
+        res.status(200).json(bookItem);
+    }
 });
 
+router.post('/books', (req, res) => {
+    const { title, author, publisher, published_year } = req.body;
 
-//save posts
-router.post('/', (req, res) => {
-    axios.post('https://jsonplaceholder.typicode.com/posts', req.body)
-    .then(response => response.json())
-    .catch(error => {
-        res.status(500).send(error);
-    })
-})
+    const lastId = inMemoryBookDB[inMemoryBookDB.length - 1].id;
+    const id = lastId + 1;
 
+    const newBook = { id, title, author, publisher, published_year };
 
+    inMemoryBookDB.push(newBook);
 
+    res.status(201)
+    .location(`/api/todos/${id}`)
+    .json(newBook);
+});
 
 
 module.exports = router;
