@@ -57,6 +57,5 @@ router.post('/books', (req, res) => {
      res.sendStatus(200);
  });
 
-router.delete()
 
 module.exports = router;

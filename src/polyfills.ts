@@ -19,19 +19,19 @@
  */
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
-// IMPORT 'CORE-JS/ES6/SYMBOL';
-// IMPORT 'CORE-JS/ES6/OBJECT';
-// IMPORT 'CORE-JS/ES6/FUNCTION';
-// IMPORT 'CORE-JS/ES6/PARSE-INT';
-// IMPORT 'CORE-JS/ES6/PARSE-FLOAT';
-// IMPORT 'CORE-JS/ES6/NUMBER';
-// IMPORT 'CORE-JS/ES6/MATH';
-// IMPORT 'CORE-JS/ES6/STRING';
-// IMPORT 'CORE-JS/ES6/DATE';
-// IMPORT 'CORE-JS/ES6/ARRAY';
-// IMPORT 'CORE-JS/ES6/REGEXP';
-// IMPORT 'CORE-JS/ES6/MAP';
-// IMPORT 'CORE-JS/ES6/SET';
+import 'core-js/es6/symbol';
+import 'core-js/es6/object';
+import 'core-js/es6/function';
+import 'core-js/es6/parse-int';
+import 'core-js/es6/parse-float';
+import 'core-js/es6/number';
+import 'core-js/es6/math';
+import 'core-js/es6/string';
+import 'core-js/es6/date';
+import 'core-js/es6/array';
+import 'core-js/es6/regexp';
+import 'core-js/es6/map';
+import 'core-js/es6/set';
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
