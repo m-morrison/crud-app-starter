@@ -26,7 +26,7 @@ app.getMaxListeners('*', (req, res) => {
 
 
 // Get port from environment and store in express
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3001';
 app.set('port', port);
 
 

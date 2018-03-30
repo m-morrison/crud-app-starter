@@ -18,7 +18,7 @@ router.get('/books', (req, res) => {
 router.get('/books/:id', (req, res) => {
     const id = req.params.id;
 
-    const bookItem = inMemoryBookDB.filter((book) => book.id = id)[id-1];
+    const bookItem = inMemoryBookDB.filter((book) => book.id == id)[0];
 
     if (!bookItem) {
         res.sendStatus(400);
@@ -39,9 +39,24 @@ router.post('/books', (req, res) => {
     inMemoryBookDB.push(newBook);
 
     res.status(201)
-    .location(`/api/todos/${id}`)
+    .location(`/api/books/${id}`)
     .json(newBook);
 });
 
+ router.delete('books/:id', (req, res) => {
+     const id = req.params;
+
+     const bookItem = inMemoryBookDB.filter((book) => book.id == id)[0];
+    
+     if(!bookItem) {
+         res.sendStatus(404);
+         return;
+     }
+     inMemoryBookDB.splice(inMemoryBookDB.indexOf((book) => book.id == id), 1);
+
+     res.sendStatus(200);
+ });
+
+router.delete()
 
 module.exports = router;
